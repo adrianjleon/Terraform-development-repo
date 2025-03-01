@@ -29,6 +29,8 @@ provider "aws" {
 
 resource "random_pet" "sg" {}
 
+resource "random_pet" "sg2" {}
+
 resource "aws_instance" "web" {
   ami                    = "ami-09e67e426f25ce0d7"
   instance_type          = "t3.micro"
@@ -46,6 +48,17 @@ resource "aws_security_group" "web-sg" {
   ingress {
     from_port   = 8080
     to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+
+resource "aws_security_group" "web-sg" {
+  name = "${random_pet.sg2.id}-sg"
+  ingress {
+    from_port   = 80
+    to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
