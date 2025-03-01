@@ -54,7 +54,7 @@ resource "aws_security_group" "web-sg" {
 }
 
 
-resource "aws_security_group" "web-sg-22" {
+resource "aws_security_group" "web-sg-222" {
   name = "${random_pet.sg2.id}-sg"
   ingress {
     from_port   = 80
